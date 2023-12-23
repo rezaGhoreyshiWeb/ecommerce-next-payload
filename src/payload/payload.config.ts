@@ -1,3 +1,4 @@
+import { cachePlugin } from '@aengz/payload-redis-cache'
 import { webpackBundler } from '@payloadcms/bundler-webpack' // bundler-import
 import { mongooseAdapter } from '@payloadcms/db-mongodb' // database-adapter-import
 import { payloadCloud } from '@payloadcms/plugin-cloud'
@@ -145,5 +146,9 @@ export default buildConfig({
       uploadsCollection: 'media',
     }),
     payloadCloud(),
+    cachePlugin({
+      excludedCollections: ['users', 'products', 'orders', 'categories'],
+      excludedGlobals: ['settings', 'header', 'footer'],
+    }),
   ],
 })

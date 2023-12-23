@@ -7,8 +7,13 @@ dotenv.config({
   path: path.resolve(__dirname, '../.env'),
 })
 
+import { initRedis } from '@aengz/payload-redis-cache'
 import express from 'express'
 import payload from 'payload'
+
+initRedis({
+  redisUrl: process.env.REDIS_URL || '',
+})
 
 import { seed } from './payload/seed'
 
